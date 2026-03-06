@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jouadi Transport</title>
+
+  <!-- 
+    - favicon
+  -->
+<link rel="icon" href="./assets/images/log.png" sizes="256x256" type="image/png">  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+    
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="assets/images/log.png" alt="TransExpress" class="logo-img">
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <button class="nav-close-btn" aria-label="Close menu" data-nav-toggler>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link" data-nav-link>
+              <span>Home</span>
+              <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link" data-nav-link>
+              <span>About</span>
+              <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#service" class="navbar-link" data-nav-link>
+              <span>Service</span>
+              <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+          </li>
+          
+          <li class="navbar-item">
+            <a href="#footer" class="navbar-link" data-nav-link>
+              <span>Contact</span>
+              <ion-icon name="chevron-forward"></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="nav-open-btn" aria-label="Open menu" aria-expanded="false" data-nav-toggler>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+    
+  </header>
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO - MODIFIÉ : Bouton Get Started redirige vers Google Form
+      -->
+     <section class="section hero" aria-label="home" id="home" style="background-image: url('./assets/images/Hero.png')">
+  <div class="container">
+    <div class="hero-content">
+      <h2 class="h1 hero-title">
+        <span class="span">To Every</span> Direction
+      </h2>
+      <p class="hero-text">
+        There are many variations of passages of worem Ipsum available, but the majority
+      </p>
+      
+      <!-- Bouton hero - Redirection vers Google Form -->
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSec2K9KO_qXsxthpXEjt1abDDYfWhXssKEQEGdZCaoZGSsGrQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn hero-btn">
+          Let's Ship With Us
+</a>
+      
+    </div>
+  </div>
+</section>
+      <!-- 
+        - #ABOUT
+      -->
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+          <figure class="about-banner img-holder">
+            <img src="./assets/images/colis.png" width="1020" height="720" loading="lazy" alt="Colis transport" class="img-cover">
+            <!--<img src="./assets/images/about-shape-1.png" width="260" height="170" loading="lazy" alt="" class="abs-img abs-img-1">-->
+            <img src="./assets/images/about-shape-2.png" width="50" height="50" loading="lazy" alt="" class="abs-img abs-img-2">
+          </figure>
+
+          <div class="about-content">
+            <p class="section-subtitle">Who we are</p>
+            <h2 class="h2 section-title">We Are Jouadi Transport</h2>
+            <p class="section-text">
+              Jouadi Transport is a trusted transportation company operating between Tunisia, Italy, Switzerland, and Germany. We specialize in reliable and secure transport services to and from these countries, ensuring safe and efficient delivery with a single dedicated transporter.
+              Our mission is to provide high-quality service, punctuality, and customer satisfaction. We are committed to professionalism, responsibility, and care in handling every shipment.
+              At Jouadi Transport, we believe in building long-term relationships based on trust, reliability, and excellence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+        - #SERVICE
+      -->
+      <section class="section service" id="service" aria-label="service">
+  <div class="container">
+    <p class="section-subtitle">All Services</p>
+    <h2 class="h2 section-title">Trusted For Our Services</h2>
+    <p class="section-text">
+      In all directions, we ensure that your goods arrive on time and in perfect condition. Because your business deserves excellence.
+    </p>
+
+    <ul class="service-list grid-list">
+      <!-- Service 1 -->
+      <li>
+        <div class="service-card">
+          <div class="card-icon">
+            <img src="./assets/images/service-icon-1.png" width="80" height="60" loading="lazy" alt="International Transport">
+          </div>
+          <h3 class="h3 card-title">
+            <span class="span">01</span> International Transport
+          </h3>
+          <p class="card-text">
+Direct pickup transport between Tunisia, Italy, Switzerland, and Germany. Shipments to the Netherlands and Austria are safely delivered through reliable postal services.          </p>
+        </div>
+      </li>
+
+      <!-- Service 2 -->
+      <li>
+        <div class="service-card">
+          <div class="card-icon">
+            <img src="./assets/images/securite.png" width="80" height="60" loading="lazy" alt="Safe Handling">
+          </div>
+          <h3 class="h3 card-title">
+            <span class="span">02</span> Safe Handling
+          </h3>
+          <p class="card-text">
+            Your goods are handled with professionalism and responsibility to guarantee safety throughout the journey.
+          </p>
+        </div>
+      </li>
+
+      <!-- Service 3 -->
+      <li>
+        <div class="service-card">
+          <div class="card-icon">
+            <img src="./assets/images/fast-delivery_6645266.png" width="80" height="60" loading="lazy" alt="Fast Delivery">
+          </div>
+          <h3 class="h3 card-title">
+            <span class="span">03</span> Fast Delivery
+          </h3>
+          <p class="card-text">
+            We are committed to punctuality and efficiency in every shipment.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+     
+  <!-- 
+    - #FOOTER
+  -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-top section">
+        <div class="footer-brand">
+          <img src="./assets/images/logo.png" width="100" alt="Jouadi Transport logo">
+          
+          <ul class="social-list">
+            <li>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link" aria-label="WhatsApp">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <ul class="footer-list">
+          <li>
+            <p class="footer-list-title">Quick Links</p>
+          </li>
+          <li>
+            <a href="#home" class="footer-link">Home</a>
+          </li>
+          <li>
+            <a href="#about" class="footer-link">About</a>
+          </li>
+          <li>
+            <a href="#service" class="footer-link">Services</a>
+          </li>
+          <li>
+            <a href="#contact" class="footer-link">Contact Us</a>
+          </li>
+        </ul>
+
+        <div class="footer-list">
+          <p class="footer-list-title">Call Us</p>
+          <a href="https://wa.me/4915204744688" target="_blank" rel="noopener noreferrer" class="contact-number">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <span class="phone-text">+49 1520 4744 688</span>
+          </a>
+          <a href="https://wa.me/21652144776" target="_blank" rel="noopener noreferrer" class="contact-number">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <span class="phone-text">+216 52 144 776</span>
+          </a>
+          <a href="https://wa.me/21623999325" target="_blank" rel="noopener noreferrer" class="contact-number">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <span class="phone-text">+216 23 999 325</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2026 Jouadi Transport. All Rights Reserved by <a href="#" class="copyright-link">ianava</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
