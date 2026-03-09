@@ -425,12 +425,16 @@ body {
 }
 
 .hero-title .span {
+  font-size: 50px;
   color: var(--prussian-blue);
-  font-size: var(--fs-2);
   font-weight: var(--fw-700);
+  display: block;
 }
 
-.hero-text { margin-block: 20px 15px; }
+.hero-title .span.small {
+  font-size: 90px; /* Version plus petite */
+  color: var(--white);
+}.hero-text { margin-block: 20px 15px; }
 
 .btn-outline {
   max-width: max-content;
@@ -605,8 +609,10 @@ margin-bottom: -30%;
   color: var(--indigo-dye);
 }
 
-.copyright-link { display: inline-block; }
-
+.copyright-link { 
+  display: inline-block; 
+  font-weight: bold; /* ou font-weight: 700; */
+}
 /*-----------------------------------*\
   #BACK TO TOP
 \*-----------------------------------*/

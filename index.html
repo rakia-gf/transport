@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,8 @@
   <!-- 
     - favicon
   -->
-<link rel="icon" href="./assets/images/log.png" sizes="256x256" type="image/png">  <!-- 
+  <link rel="icon" href="./assets/images/log.png" sizes="256x256" type="image/png">
+  <!-- 
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
@@ -31,7 +32,7 @@
   <!-- 
     - #HEADER
   -->
-    
+
   <header class="header" data-header>
     <div class="container">
 
@@ -41,7 +42,7 @@
 
       <nav class="navbar" data-navbar>
         <div class="navbar-top">
-          <button class="nav-close-btn" aria-label="Close menu" data-nav-toggler>
+          <button class="nav-close-btn" aria-label="Fermer le menu" data-nav-toggler>
             <ion-icon name="close-outline"></ion-icon>
           </button>
         </div>
@@ -49,23 +50,23 @@
         <ul class="navbar-list">
           <li class="navbar-item">
             <a href="#home" class="navbar-link" data-nav-link>
-              <span>Home</span>
+              <span>Accueil</span>
               <ion-icon name="chevron-forward"></ion-icon>
             </a>
           </li>
           <li class="navbar-item">
             <a href="#about" class="navbar-link" data-nav-link>
-              <span>About</span>
+              <span>À propos</span>
               <ion-icon name="chevron-forward"></ion-icon>
             </a>
           </li>
           <li class="navbar-item">
             <a href="#service" class="navbar-link" data-nav-link>
-              <span>Service</span>
+              <span>Services</span>
               <ion-icon name="chevron-forward"></ion-icon>
             </a>
           </li>
-          
+
           <li class="navbar-item">
             <a href="#footer" class="navbar-link" data-nav-link>
               <span>Contact</span>
@@ -75,14 +76,14 @@
         </ul>
       </nav>
 
-      <button class="nav-open-btn" aria-label="Open menu" aria-expanded="false" data-nav-toggler>
+      <button class="nav-open-btn" aria-label="Ouvrir le menu" aria-expanded="false" data-nav-toggler>
         <ion-icon name="menu-outline"></ion-icon>
       </button>
 
       <div class="overlay" data-nav-toggler data-overlay></div>
 
     </div>
-    
+
   </header>
 
   <main>
@@ -91,42 +92,49 @@
       <!-- 
         - #HERO - MODIFIÉ : Bouton Get Started redirige vers Google Form
       -->
-     <section class="section hero" aria-label="home" id="home" style="background-image: url('./assets/images/Hero.png')">
+<section class="section hero" aria-label="accueil" id="home"
+  style="background-image: url('./assets/images/Hero.png')">
   <div class="container">
     <div class="hero-content">
       <h2 class="h1 hero-title">
-        <span class="span">To Every</span> Direction
-      </h2>
-      <p class="hero-text">
-        There are many variations of passages of worem Ipsum available, but the majority
+  <span class="span">Vers Toutes</span>
+  <span class="span small">les Directions</span>
+</h2>      <p class="hero-text">
+        Il existe de nombreuses variations de passages de Lorem Ipsum disponibles, mais la majorité
       </p>
-      
+
       <!-- Bouton hero - Redirection vers Google Form -->
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSec2K9KO_qXsxthpXEjt1abDDYfWhXssKEQEGdZCaoZGSsGrQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn hero-btn">
-          Let's Ship With Us
-</a>
-      
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSec2K9KO_qXsxthpXEjt1abDDYfWhXssKEQEGdZCaoZGSsGrQ/viewform?usp=publish-editor"
+        target="_blank" rel="noopener noreferrer" class="btn hero-btn">
+        Expédiez avec nous
+      </a>
     </div>
   </div>
 </section>
       <!-- 
         - #ABOUT
       -->
-      <section class="section about" id="about" aria-label="about">
+      <section class="section about" id="about" aria-label="à propos">
         <div class="container">
           <figure class="about-banner img-holder">
-            <img src="./assets/images/colis.png" width="1020" height="720" loading="lazy" alt="Colis transport" class="img-cover">
+            <img src="./assets/images/colis.png" width="1020" height="720" loading="lazy" alt="Colis transport"
+              class="img-cover">
             <!--<img src="./assets/images/about-shape-1.png" width="260" height="170" loading="lazy" alt="" class="abs-img abs-img-1">-->
-            <img src="./assets/images/about-shape-2.png" width="50" height="50" loading="lazy" alt="" class="abs-img abs-img-2">
+            <img src="./assets/images/about-shape-2.png" width="50" height="50" loading="lazy" alt=""
+              class="abs-img abs-img-2">
           </figure>
 
           <div class="about-content">
-            <p class="section-subtitle">Who we are</p>
-            <h2 class="h2 section-title">We Are Jouadi Transport</h2>
+            <p class="section-subtitle">Qui nous sommes</p>
+            <h2 class="h2 section-title">Nous Sommes Jouadi Transport</h2>
             <p class="section-text">
-              Jouadi Transport is a trusted transportation company operating between Tunisia, Italy, Switzerland, and Germany. We specialize in reliable and secure transport services to and from these countries, ensuring safe and efficient delivery with a single dedicated transporter.
-              Our mission is to provide high-quality service, punctuality, and customer satisfaction. We are committed to professionalism, responsibility, and care in handling every shipment.
-              At Jouadi Transport, we believe in building long-term relationships based on trust, reliability, and excellence.
+              Jouadi Transport est une entreprise de transport de confiance opérant entre la Tunisie, l'Italie, la
+              Suisse et l'Allemagne. Nous sommes spécialisés dans des services de transport fiables et sécurisés vers et
+              depuis ces pays, garantissant une livraison sûre et efficace avec un seul transporteur dédié.
+              Notre mission est de fournir un service de haute qualité, de la ponctualité et la satisfaction du client.
+              Nous nous engageons envers le professionnalisme, la responsabilité et le soin apporté à chaque envoi.
+              Chez Jouadi Transport, nous croyons en l'établissement de relations à long terme basées sur la confiance,
+              la fiabilité et l'excellence.
             </p>
           </div>
         </div>
@@ -136,144 +144,153 @@
         - #SERVICE
       -->
       <section class="section service" id="service" aria-label="service">
-  <div class="container">
-    <p class="section-subtitle">All Services</p>
-    <h2 class="h2 section-title">Trusted For Our Services</h2>
-    <p class="section-text">
-      In all directions, we ensure that your goods arrive on time and in perfect condition. Because your business deserves excellence.
-    </p>
-
-    <ul class="service-list grid-list">
-      <!-- Service 1 -->
-      <li>
-        <div class="service-card">
-          <div class="card-icon">
-            <img src="./assets/images/service-icon-1.png" width="80" height="60" loading="lazy" alt="International Transport">
-          </div>
-          <h3 class="h3 card-title">
-            <span class="span">01</span> International Transport
-          </h3>
-          <p class="card-text">
-Direct pickup transport between Tunisia, Italy, Switzerland, and Germany. Shipments to the Netherlands and Austria are safely delivered through reliable postal services.          </p>
-        </div>
-      </li>
-
-      <!-- Service 2 -->
-      <li>
-        <div class="service-card">
-          <div class="card-icon">
-            <img src="./assets/images/securite.png" width="80" height="60" loading="lazy" alt="Safe Handling">
-          </div>
-          <h3 class="h3 card-title">
-            <span class="span">02</span> Safe Handling
-          </h3>
-          <p class="card-text">
-            Your goods are handled with professionalism and responsibility to guarantee safety throughout the journey.
+        <div class="container">
+          <p class="section-subtitle">Tous les services</p>
+          <h2 class="h2 section-title">Reconnu pour nos services</h2>
+          <p class="section-text">
+            Dans toutes les directions, nous veillons à ce que vos marchandises arrivent à temps et en parfait état.
+            Parce que votre entreprise mérite l'excellence.
           </p>
-        </div>
-      </li>
 
-      <!-- Service 3 -->
-      <li>
-        <div class="service-card">
-          <div class="card-icon">
-            <img src="./assets/images/fast-delivery_6645266.png" width="80" height="60" loading="lazy" alt="Fast Delivery">
-          </div>
-          <h3 class="h3 card-title">
-            <span class="span">03</span> Fast Delivery
-          </h3>
-          <p class="card-text">
-            We are committed to punctuality and efficiency in every shipment.
-          </p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-     
-  <!-- 
-    - #FOOTER
-  -->
-  <footer class="footer" id="footer">
-    <div class="container">
-      <div class="footer-top section">
-        <div class="footer-brand">
-          <img src="./assets/images/logo.png" width="100" alt="Jouadi Transport logo">
-          
-          <ul class="social-list">
+          <ul class="service-list grid-list">
+            <!-- Service 1 -->
             <li>
-              <a href="#" class="social-link" aria-label="Facebook">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
+              <div class="service-card">
+                <div class="card-icon">
+                  <img src="./assets/images/service-icon-1.png" width="80" height="60" loading="lazy"
+                    alt="Transport international">
+                </div>
+                <h3 class="h3 card-title">
+                  <span class="span">01</span> Transport International
+                </h3>
+                <p class="card-text">
+                  Transport direct entre la Tunisie, l'Italie, la Suisse et l'Allemagne. Les envois vers les Pays-Bas et
+                  l'Autriche sont livrés en toute sécurité via des services postaux fiables.
+                </p>
+              </div>
             </li>
+
+            <!-- Service 2 -->
             <li>
-              <a href="#" class="social-link" aria-label="WhatsApp">
-                <ion-icon name="logo-whatsapp"></ion-icon>
-              </a>
+              <div class="service-card">
+                <div class="card-icon">
+                  <img src="./assets/images/securite.png" width="80" height="60" loading="lazy" alt="Manutention sécurisée">
+                </div>
+                <h3 class="h3 card-title">
+                  <span class="span">02</span> Manutention Sécurisée
+                </h3>
+                <p class="card-text">
+                  Vos marchandises sont traitées avec professionnalisme et responsabilité pour garantir la sécurité tout
+                  au long du trajet.
+                </p>
+              </div>
             </li>
+
+            <!-- Service 3 -->
             <li>
-              <a href="#" class="social-link" aria-label="Instagram">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
+              <div class="service-card">
+                <div class="card-icon">
+                  <img src="./assets/images/fast-delivery_6645266.png" width="80" height="60" loading="lazy"
+                    alt="Livraison rapide">
+                </div>
+                <h3 class="h3 card-title">
+                  <span class="span">03</span> Livraison Rapide
+                </h3>
+                <p class="card-text">
+                  Nous nous engageons à assurer la ponctualité et l'efficacité de chaque envoi.
+                </p>
+              </div>
             </li>
           </ul>
         </div>
+      </section>
 
-        <ul class="footer-list">
-          <li>
-            <p class="footer-list-title">Quick Links</p>
-          </li>
-          <li>
-            <a href="#home" class="footer-link">Home</a>
-          </li>
-          <li>
-            <a href="#about" class="footer-link">About</a>
-          </li>
-          <li>
-            <a href="#service" class="footer-link">Services</a>
-          </li>
-          <li>
-            <a href="#contact" class="footer-link">Contact Us</a>
-          </li>
-        </ul>
+      <!-- 
+    - #FOOTER
+  -->
+      <footer class="footer" id="footer">
+        <div class="container">
+          <div class="footer-top section">
+            <div class="footer-brand">
+              <img src="./assets/images/logo.png" width="100" alt="Jouadi Transport logo">
 
-        <div class="footer-list">
-          <p class="footer-list-title">Call Us</p>
-          <a href="https://wa.me/4915204744688" target="_blank" rel="noopener noreferrer" class="contact-number">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <span class="phone-text">+49 1520 4744 688</span>
-          </a>
-          <a href="https://wa.me/21652144776" target="_blank" rel="noopener noreferrer" class="contact-number">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <span class="phone-text">+216 52 144 776</span>
-          </a>
-          <a href="https://wa.me/21623999325" target="_blank" rel="noopener noreferrer" class="contact-number">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-            <span class="phone-text">+216 23 999 325</span>
-          </a>
+              <ul class="social-list">
+                <li>
+                  <a href="https://www.facebook.com/jaouadilogistics" class="social-link" aria-label="Facebook">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                  </a>
+                </li>
+                <li>
+                  
+                <li>
+                  <a href="https://www.instagram.com/jaouadilogistics?igsh=MnFjZ2FnNHFqeTBx" class="social-link" aria-label="Instagram">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                  </a>
+                </li>
+               <a href="https://www.tiktok.com/@jaouadilogistics?lang=en" class="social-link" aria-label="TikTok">
+  <ion-icon name="logo-tiktok"></ion-icon>
+</a>
+                </li>
+              </ul>
+            </div>
+
+            <ul class="footer-list">
+              <li>
+                <p class="footer-list-title">Liens rapides</p>
+              </li>
+              <li>
+                <a href="#home" class="footer-link">Accueil</a>
+              </li>
+              <li>
+                <a href="#about" class="footer-link">À propos</a>
+              </li>
+              <li>
+                <a href="#service" class="footer-link">Services</a>
+              </li>
+              <li>
+                <a href="#footer" class="footer-link">Contact</a>
+              </li>
+            </ul>
+
+            <div class="footer-list">
+              <p class="footer-list-title">Appelez-nous</p>
+              <a href="https://wa.me/4915204744688" target="_blank" rel="noopener noreferrer" class="contact-number">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span class="phone-text">+49 1520 4744 688</span>
+              </a>
+              <a href="https://wa.me/21652144776" target="_blank" rel="noopener noreferrer" class="contact-number">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span class="phone-text">+216 52 144 776</span>
+              </a>
+              <a href="https://wa.me/21623999325" target="_blank" rel="noopener noreferrer" class="contact-number">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span class="phone-text">+216 23 999 325</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="copyright">
+              &copy; 2026 Jouadi Transport. Tous droits réservés par <a href="https://linktr.ee/ianava" class="copyright-link">ianava</a>
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
 
-      <div class="footer-bottom">
-        <p class="copyright">
-          &copy; 2026 Jouadi Transport. All Rights Reserved by <a href="#" class="copyright-link">ianava</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 
+      <!-- 
     - #BACK TO TOP
   -->
-  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
-    <ion-icon name="chevron-up"></ion-icon>
-  </a>
+      <a href="#top" class="back-top-btn" aria-label="Retour en haut" data-back-top-btn>
+        <ion-icon name="chevron-up"></ion-icon>
+      </a>
+
+  </main>
 
   <!-- 
     - custom js link
   -->
   <script src="./assets/js/script.js" defer></script>
-
+  <script src="./assets/js/translate.js" defer></script> 
   <!-- 
     - ionicon link
   -->
