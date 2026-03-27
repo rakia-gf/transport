@@ -20,7 +20,7 @@ const header = document.querySelector("[data-header]");
 const backTopBtn = document.querySelector("[data-back-top-btn]");
 
 // Additional elements for enhanced features
-const sections = document.querySelectorAll('.section');
+const sections = document.querySelectorAll('section[id]');
 const html = document.documentElement;
 const body = document.body;
 
@@ -222,11 +222,76 @@ const initBackToTop = () => {
 };
 
 /*-----------------------------------*\
-  #SMOOTH SCROLL FOR ANCHOR LINKS
+  #ACTIVE NAVIGATION LINK ON SCROLL (CORRIGÉ)
 \*-----------------------------------*/
 
 /**
- * Initialize smooth scroll for all anchor links
+ * Set active navigation link based on scroll position
+ * Cette fonction gère correctement le changement de couleur des liens actifs
+ */
+const initActiveNavLink = () => {
+  // Récupérer toutes les sections avec un ID
+  const sections = document.querySelectorAll("section[id]");
+  
+  if (!sections.length) return;
+
+  // Fonction pour mettre à jour le lien actif
+  const updateActiveLink = () => {
+    const scrollPosition = window.scrollY + 150; // Décalage pour le header fixe
+    
+    // Variable pour stocker la section actuelle
+    let currentSection = null;
+    
+    // Trouver la section visible
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        currentSection = section;
+      }
+    });
+    
+    // Si aucune section n'est trouvée et qu'on est en haut de la page, activer "accueil"
+    if (!currentSection && window.scrollY < 100) {
+      const homeLink = document.querySelector('.navbar-link[href="index.html"], .navbar-link[href="#home"]');
+      if (homeLink) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        homeLink.classList.add('active');
+      }
+      return;
+    }
+    
+    // Si une section est trouvée
+    if (currentSection) {
+      const sectionId = currentSection.getAttribute("id");
+      const activeLink = document.querySelector(`.navbar-link[href="#${sectionId}"]`);
+      
+      if (activeLink) {
+        // Supprimer la classe active de tous les liens
+        navLinks.forEach(link => link.classList.remove('active'));
+        // Ajouter la classe active au lien correspondant
+        activeLink.classList.add('active');
+      }
+    }
+  };
+  
+  // Appeler la fonction au scroll avec throttle
+  window.addEventListener("scroll", throttleRAF(updateActiveLink));
+  
+  // Appeler au chargement de la page
+  updateActiveLink();
+  
+  // Appeler au redimensionnement (pour les changements de layout)
+  window.addEventListener("resize", debounce(updateActiveLink, 100));
+};
+
+/*-----------------------------------*\
+  #SMOOTH SCROLL FOR ANCHOR LINKS AVEC MISE À JOUR ACTIVE
+\*-----------------------------------*/
+
+/**
+ * Initialize smooth scroll for all anchor links avec mise à jour de la classe active
  */
 const initSmoothScroll = () => {
   const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
@@ -239,20 +304,61 @@ const initSmoothScroll = () => {
       const targetElement = document.querySelector(targetId);
       
       if (targetElement) {
-        // Calculate header height for offset
+        // Calculer la hauteur du header pour l'offset
         const headerHeight = header ? header.offsetHeight : 0;
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
         
+        // Scroll vers la section
         window.scrollTo({
           top: targetPosition,
           behavior: "smooth"
         });
         
-        // Update URL without page reload
+        // Mettre à jour la classe active immédiatement
+        navLinks.forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Mettre à jour l'URL sans recharger
         history.pushState(null, null, targetId);
+        
+        // Fermer le menu mobile si ouvert
+        if (navbar && navbar.classList.contains('active')) {
+          navbar.classList.remove('active');
+          overlay.classList.remove('active');
+          body.classList.remove('no-scroll');
+        }
       }
     });
   });
+};
+
+/*-----------------------------------*\
+  #INITIALISATION DES LIENS ACTIFS AU CHARGEMENT
+\*-----------------------------------*/
+
+/**
+ * Initialiser les liens actifs en fonction de l'URL
+ */
+const initActiveLinksOnLoad = () => {
+  // Vérifier si l'URL contient un hash
+  const currentHash = window.location.hash;
+  
+  if (currentHash) {
+    const activeLink = document.querySelector(`.navbar-link[href="${currentHash}"]`);
+    if (activeLink) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      activeLink.classList.add('active');
+    }
+  } else {
+    // Si pas de hash et qu'on est en haut de page, activer "accueil"
+    if (window.scrollY < 100) {
+      const homeLink = document.querySelector('.navbar-link[href="index.html"], .navbar-link[href="#home"]');
+      if (homeLink) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        homeLink.classList.add('active');
+      }
+    }
+  }
 };
 
 /*-----------------------------------*\
@@ -263,7 +369,8 @@ const initSmoothScroll = () => {
  * Initialize scroll reveal animations
  */
 const initScrollReveal = () => {
-  if (!sections.length) return;
+  const revealSections = document.querySelectorAll('.section');
+  if (!revealSections.length) return;
 
   // Intersection Observer options
   const observerOptions = {
@@ -291,141 +398,8 @@ const initScrollReveal = () => {
   }, observerOptions);
 
   // Observe all sections
-  sections.forEach(section => {
+  revealSections.forEach(section => {
     observer.observe(section);
-  });
-};
-
-/*-----------------------------------*\
-  #ACTIVE NAVIGATION LINK ON SCROLL
-\*-----------------------------------*/
-
-/**
- * Set active navigation link based on scroll position
- */
-const initActiveNavLink = () => {
-  const sections = document.querySelectorAll("section[id]");
-  
-  if (!sections.length) return;
-
-  const handleScroll = throttleRAF(() => {
-    const scrollY = window.scrollY;
-    
-    sections.forEach(section => {
-      const sectionHeight = section.offsetHeight;
-      const sectionTop = section.offsetTop - 100;
-      const sectionId = section.getAttribute("id");
-      
-      const navLink = document.querySelector(`.navbar-link[href="#${sectionId}"]`);
-      
-      if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLink.classList.add("active");
-      } else if (navLink) {
-        navLink.classList.remove("active");
-      }
-    });
-  });
-
-  window.addEventListener("scroll", handleScroll);
-  handleScroll();
-};
-
-/*-----------------------------------*\
-  #LOADER / PAGE TRANSITION
-\*-----------------------------------*/
-
-/**
- * Initialize page loader (optional)
- */
-const initPageLoader = () => {
-  // Add loader element if not exists
-  if (!document.querySelector('.page-loader')) {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = '<div class="loader-spinner"></div>';
-    document.body.appendChild(loader);
-  }
-
-  // Hide loader when page is loaded
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const loader = document.querySelector('.page-loader');
-      if (loader) {
-        loader.classList.add('fade-out');
-        setTimeout(() => {
-          loader.remove();
-        }, 500);
-      }
-    }, 300);
-  });
-};
-
-/*-----------------------------------*\
-  #POPUP FUNCTION
-\*-----------------------------------*/
-
-/**
- * Create and show a popup notification
- * @param {string} message - The message to display
- * @param {string} type - Type of popup (success, error, info)
- */
-const showPopup = (message, type = 'success') => {
-  // Remove existing popup if any
-  const existingPopup = document.querySelector('.custom-popup');
-  if (existingPopup) existingPopup.remove();
-
-  // Create popup container
-  const popup = document.createElement('div');
-  popup.className = `custom-popup ${type}`;
-  
-  // Add icon based on type
-  let icon = '';
-  if (type === 'success') {
-    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
-  } else if (type === 'error') {
-    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
-  } else {
-    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
-  }
-
-  popup.innerHTML = `
-    <div class="popup-content">
-      <div class="popup-icon">${icon}</div>
-      <div class="popup-message">${message}</div>
-    </div>
-    <button class="popup-close" aria-label="Close">&times;</button>
-  `;
-
-  // Add to body
-  document.body.appendChild(popup);
-
-  // Add close button functionality
-  const closeBtn = popup.querySelector('.popup-close');
-  closeBtn.addEventListener('click', () => {
-    popup.classList.add('fade-out');
-    setTimeout(() => {
-      if (popup.parentNode) popup.remove();
-    }, 300);
-  });
-
-  // Auto close after 5 seconds
-  setTimeout(() => {
-    if (popup.parentNode) {
-      popup.classList.add('fade-out');
-      setTimeout(() => {
-        if (popup.parentNode) popup.remove();
-      }, 300);
-    }
-  }, 5000);
-
-  // Allow click outside to close (optional)
-  popup.addEventListener('click', (e) => {
-    if (e.target === popup) {
-      popup.classList.add('fade-out');
-      setTimeout(() => {
-        if (popup.parentNode) popup.remove();
-      }, 300);
-    }
   });
 };
 
@@ -490,13 +464,12 @@ const initFormValidation = () => {
     if (isValid) {
       // Désactiver le bouton et changer le texte
       const submitBtn = contactForm.querySelector('.btn-submit');
-      const originalText = submitBtn.textContent; // "Send Package Request"
+      const originalText = submitBtn.textContent;
       
       // Changer le texte du bouton pendant l'envoi
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
       
-      // VERSION AVEC VRAI ENVOI (FormSubmit)
       // Envoyer les données au serveur
       fetch(contactForm.action, {
         method: 'POST',
@@ -507,25 +480,18 @@ const initFormValidation = () => {
       })
       .then(response => {
         if (response.ok) {
-          // ✅ Pop-up de succès APRÈS la réponse positive
           showPopup('✅ Your package request has been sent successfully! We will contact you shortly.', 'success');
-          
-          // Réinitialiser le formulaire
           contactForm.reset();
         } else {
-          // ❌ Pop-up d'erreur
           showPopup('❌ An error occurred. Please try again.', 'error');
         }
       })
       .catch(error => {
-        // ❌ Pop-up d'erreur réseau
         showPopup('❌ Network error. Please check your connection.', 'error');
         console.error('Error:', error);
       })
       .finally(() => {
-        // ❗ DANS TOUS LES CAS : remettre le bouton à son état original
-        // Le pop-up est déjà affiché, maintenant on remet le bouton
-        submitBtn.textContent = originalText; // "Send Package Request"
+        submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       });
     }
@@ -539,6 +505,75 @@ const initFormValidation = () => {
       const errorMsg = formGroup.querySelector('.error-message');
       if (errorMsg) errorMsg.remove();
     });
+  });
+};
+
+/*-----------------------------------*\
+  #POPUP FUNCTION
+\*-----------------------------------*/
+
+/**
+ * Create and show a popup notification
+ * @param {string} message - The message to display
+ * @param {string} type - Type of popup (success, error, info)
+ */
+const showPopup = (message, type = 'success') => {
+  // Remove existing popup if any
+  const existingPopup = document.querySelector('.custom-popup');
+  if (existingPopup) existingPopup.remove();
+
+  // Create popup container
+  const popup = document.createElement('div');
+  popup.className = `custom-popup ${type}`;
+  
+  // Add icon based on type
+  let icon = '';
+  if (type === 'success') {
+    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>';
+  } else if (type === 'error') {
+    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
+  } else {
+    icon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
+  }
+
+  popup.innerHTML = `
+    <div class="popup-content">
+      <div class="popup-icon">${icon}</div>
+      <div class="popup-message">${message}</div>
+    </div>
+    <button class="popup-close" aria-label="Close">&times;</button>
+  `;
+
+  // Add to body
+  document.body.appendChild(popup);
+
+  // Add close button functionality
+  const closeBtn = popup.querySelector('.popup-close');
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('fade-out');
+    setTimeout(() => {
+      if (popup.parentNode) popup.remove();
+    }, 300);
+  });
+
+  // Auto close after 5 seconds
+  setTimeout(() => {
+    if (popup.parentNode) {
+      popup.classList.add('fade-out');
+      setTimeout(() => {
+        if (popup.parentNode) popup.remove();
+      }, 300);
+    }
+  }, 5000);
+
+  // Allow click outside to close
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.classList.add('fade-out');
+      setTimeout(() => {
+        if (popup.parentNode) popup.remove();
+      }, 300);
+    }
   });
 };
 
@@ -654,10 +689,6 @@ const initAnimationStyles = () => {
       border-left-color: #ff4444;
     }
     
-    .custom-popup.info {
-      border-left-color: #33b5e5;
-    }
-    
     .popup-content {
       display: flex;
       align-items: center;
@@ -680,10 +711,6 @@ const initAnimationStyles = () => {
     
     .custom-popup.error .popup-icon {
       color: #ff4444;
-    }
-    
-    .custom-popup.info .popup-icon {
-      color: #33b5e5;
     }
     
     .popup-icon svg {
@@ -759,60 +786,40 @@ const initAnimationStyles = () => {
     
     .navbar-link.active {
       color: var(--dark-orange) !important;
-      font-weight: var(--fw-600);
-    }
-    
-    .navbar-link.active::before {
-      width: 4px;
     }
     
     @media (min-width: 992px) {
-      .navbar-link.active::before {
-        width: 100%;
-        background-color: var(--dark-orange);
+      .navbar-link.active {
+        color: var(--dark-orange) !important;
       }
     }
     
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: var(--white);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.5s ease;
-    }
-    
-    .page-loader.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-    
-    .loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid var(--cultured-2);
-      border-top-color: var(--dark-orange);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
       to {
-        transform: rotate(360deg);
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(100%);
       }
     }
   `;
@@ -834,13 +841,13 @@ const init = () => {
       initHeaderScroll();
       initBackToTop();
       initSmoothScroll();
-      initScrollReveal();
       initActiveNavLink();
+      initActiveLinksOnLoad();
+      initScrollReveal();
       initFormValidation();
       initResizeHandler();
       initConnectionOptimizer();
       initAnimationStyles();
-      // initPageLoader(); // Uncomment if you want page loader
     });
   } else {
     // DOM already loaded
@@ -848,28 +855,15 @@ const init = () => {
     initHeaderScroll();
     initBackToTop();
     initSmoothScroll();
-    initScrollReveal();
     initActiveNavLink();
+    initActiveLinksOnLoad();
+    initScrollReveal();
     initFormValidation();
     initResizeHandler();
     initConnectionOptimizer();
     initAnimationStyles();
-    // initPageLoader(); // Uncomment if you want page loader
   }
 };
 
 // Start the application
 init();
-
-/*-----------------------------------*\
-  #EXPORT FOR MODULE USE (OPTIONAL)
-\*-----------------------------------*/
-
-// If using modules, uncomment below
-// export { 
-//   initNavbarToggle,
-//   initHeaderScroll,
-//   initBackToTop,
-//   initSmoothScroll,
-//   initScrollReveal
-// };
