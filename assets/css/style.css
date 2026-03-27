@@ -1,5 +1,5 @@
 /*-----------------------------------*\
-  #style.css
+  #style.css - VERSION FINALE CORRIGÉE
 \*-----------------------------------*/
 
 /**
@@ -292,7 +292,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: auto; /* Pousse le groupe à droite */
+  margin-left: auto;
 }
 
 /* Bouton de changement de langue */
@@ -363,14 +363,14 @@ body {
 }
 
 /*-----------------------------------*\
-  #SIDEBAR AMÉLIORÉ
+  #SIDEBAR - VERSION CORRIGÉE (SANS BACKGROUND ORANGE)
 \*-----------------------------------*/
 
 /* Sidebar - design amélioré */
 .navbar {
   position: fixed;
   top: 0;
-  right: -350px; /* Un peu plus large pour plus d'espace */
+  right: -350px;
   max-width: 350px;
   width: 100%;
   height: 100vh;
@@ -449,7 +449,7 @@ body {
   border-block-end: none;
 }
 
-/* Liens de navigation améliorés */
+/* Liens de navigation - SANS AUCUN BACKGROUND ORANGE */
 .navbar-link {
   color: var(--onyx);
   display: flex;
@@ -464,33 +464,20 @@ body {
   overflow: hidden;
 }
 
-/* Effet de surbrillance au survol */
+/* PAS DE BORDURE ORANGE AU SURVOL - Supprimé complètement */
 .navbar-link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-  border-radius: 0 4px 4px 0;
+  display: none;
 }
 
-.navbar-link:hover::before,
-.navbar-link.active::before {
-  transform: scaleY(1);
-}
-
+/* PAS DE BACKGROUND ORANGE - Seulement changement de couleur de texte */
 .navbar-link:hover,
 .navbar-link.active {
-  background: linear-gradient(90deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 140, 0, 0) 100%);
+  background: transparent;
   color: var(--dark-orange);
-  padding-left: 25px;
+  padding-left: 20px; /* Garde le padding original */
 }
 
-/* Icônes dans les liens */
+/* Icônes dans les liens - apparaissent au survol */
 .navbar-link ion-icon {
   font-size: 20px;
   color: var(--dark-orange);
@@ -677,7 +664,7 @@ body {
 }
 
 /*-----------------------------------*\
-  #ABOUT
+  #ABOUT - SANS IMG2
 \*-----------------------------------*/
 
 .about .container {
@@ -692,25 +679,19 @@ body {
   width: 100%;
   max-width: 100%;
   margin-block-end: 70px;
+  overflow: visible;
 }
 
-.about .abs-img-2 {
-  display: block;
-  position: absolute;
-  width: 80px;
-  height: auto;
-  bottom: -50px;
-  left: 15px;
-  z-index: 1;
-}
-
+/* Image 1 seulement - positionnée en bas à droite */
 .about .abs-img-1 {
   position: absolute;
-  width: 70px;
+  width: 85px;
   height: auto;
-  bottom: -50px;
-  right: 10px;
+  bottom: -20px;
+  right: -20px;
+  z-index: 2;
   animation: move 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
 }
 
 .about :is(.section-title, .section-text) { margin-block-end: 20px; }
@@ -881,8 +862,7 @@ body {
   .hero-title .span       { font-size: 2.4rem; }
   .hero-title .span.small { font-size: 3.5rem; }
   .about-banner           { max-width: 100%; margin-block-end: 65px; }
-  .about .abs-img-2       { width: 70px;  left: 10px; bottom: -45px; }
-  .about .abs-img-1       { width: 60px;  right: 5px; bottom: -45px; }
+  .about .abs-img-1       { width: 60px; right: -10px; bottom: -25px; }
   .grid-list              { grid-template-columns: 1fr; }
   .footer-top             { grid-template-columns: 1fr; }
   .lang-switcher span     { display: none; }
@@ -896,6 +876,10 @@ body {
   .navbar.active {
     transform: translateX(-280px);
   }
+  .navbar-link:hover,
+  .navbar-link.active {
+    background: transparent;
+  }
 }
 
 /* 480px */
@@ -907,9 +891,11 @@ body {
   }
   .hero-title .span       { font-size: 2.8rem; }
   .hero-title .span.small { font-size: 4rem; }
-  .about .abs-img-2       { width: 80px;  left: 15px; bottom: -50px; }
-  .about .abs-img-1       { width: 70px;  right: 10px; bottom: -50px; }
+  .about .abs-img-1       { width: 75px; right: -15px; bottom: -30px; }
   .about-banner           { margin-block-end: 70px; }
+  .about-banner {
+    overflow: visible;
+  }
 }
 
 /* 540px */
@@ -937,9 +923,11 @@ body {
   }
   .hero-title .span       { font-size: 3.2rem; }
   .hero-title .span.small { font-size: 5rem; }
-  .about .abs-img-2       { width: 100px; left: 20px; bottom: -55px; }
-  .about .abs-img-1       { width: 85px;  right: 15px; bottom: -55px; }
+  .about .abs-img-1       { width: 85px; right: -20px; bottom: -35px; }
   .about-banner           { margin-block-end: 80px; }
+  .about-banner {
+    overflow: visible;
+  }
 }
 
 /* 640px */
@@ -961,9 +949,11 @@ body {
   .hero-title .span.small { font-size: 6rem; }
   .hero-text              { max-width: 30ch; }
   .btn-outline            { margin-inline: 0; }
-  .about .abs-img-2       { width: 120px; left: 25px; bottom: -60px; }
-  .about .abs-img-1       { width: 100px; right: 20px; bottom: -60px; }
+  .about .abs-img-1       { width: 100px; right: -25px; bottom: -40px; }
   .about-banner           { margin-block-end: 85px; }
+  .about-banner {
+    overflow: visible;
+  }
 }
 
 /* 768px */
@@ -981,13 +971,15 @@ body {
   .hero-title .span.small { font-size: 7rem; }
   .hero-text              { font-size: var(--fs-7); max-width: 40ch; margin-block-end: 40px; }
   .btn-outline            { font-size: var(--fs-7); padding: 12px 30px; }
-  .about .abs-img-2       { width: 150px; left: 30px; bottom: -65px; }
-  .about .abs-img-1       { width: 120px; right: 25px; bottom: -65px; }
+  .about .abs-img-1       { width: 130px; right: -30px; bottom: -45px; }
   .about-banner           { margin-block-end: 90px; }
   .footer-top             { grid-template-columns: 1fr 1fr; }
   .form-row               { flex-direction: row; gap: 15px; }
   .contact-form-wrapper   { padding: 30px 20px; }
   .btn-submit             { padding: 12px 25px; font-size: var(--fs-8); }
+  .about-banner {
+    overflow: visible;
+  }
 }
 
 /* 992px — desktop : masquer hamburger, afficher navbar en ligne */
@@ -1011,10 +1003,12 @@ body {
   .navbar-list            { display: flex; gap: 5px; justify-content: center; }
   .navbar-item:not(:last-child) { border-block-end: none; }
   .navbar-link            { color: var(--white); }
-  .navbar-link:is(:hover, :focus) { background-color: transparent; }
+  .navbar-link:is(:hover, :focus) { 
+    background-color: transparent;
+    color: var(--dark-orange);
+  }
   .header-contact         { margin-inline-start: 0; }
   
-  /* Sur desktop, le bouton langue reste à droite */
   .header-actions {
     margin-left: 0;
   }
@@ -1038,11 +1032,21 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
   }
-  .about-banner           { max-width: 300px; margin-block-end: 60px; }
-  .about .abs-img-2       { width: 200px; height: auto; bottom: 0; left: 50px; z-index: -1; }
-  .about .abs-img-1       { position: absolute; width: 150px; height: auto; right: -80px; bottom: -30px; }
+  .about-banner { 
+    max-width: 450px; 
+    margin-block-end: 0;
+    overflow: visible;
+  }
+  /* Image 1 seulement - positionnée en bas à droite */
+  .about .abs-img-1 { 
+    width: 180px; 
+    height: auto; 
+    right: -70px; 
+    bottom: -20px;
+    z-index: 2;
+  }
   .about :is(.section-title, .section-text) { margin-block-end: 35px; }
 
   .footer-top             { grid-template-columns: repeat(4, 1fr); justify-items: self-end; }
@@ -1058,9 +1062,8 @@ body {
   .hero-content           { left: 80px; }
   .hero-title .span       { font-size: 50px; }
   .hero-title .span.small { font-size: 90px; }
-  .about-banner           { max-width: 370px; }
-  .about .abs-img-2       { width: 250px; }
-  .about .abs-img-1       { width: 180px; right: -90px; }
+  .about-banner           { max-width: 500px; }
+  .about .abs-img-1       { width: 220px; right: -90px; bottom: -30px; }
   .footer-top             { padding-block: 60px; }
 }
 
@@ -1068,4 +1071,6 @@ body {
 @media (min-width: 1400px) {
   .container              { max-width: 1320px; }
   .hero-content           { left: 100px; }
+  .about-banner           { max-width: 550px; }
+  .about .abs-img-1       { width: 260px; right: -100px; bottom: -40px; }
 }
